@@ -13,11 +13,50 @@ document.querySelector("form.search-bar").addEventListener("submit", function(e)
    .then (response => response.json())
    .then (data => {
        console.log(data);
-   })
-   .catch(error => console.error(error));
+       let song = data.items[0].id.videoId;
+       let song2 = data.items[1].id.videoId;
+       console.log(song);
+       console.log(song2);
+       IDArray = [];
+       linkArray = [];
+       for (i=0; i<data.items.length; i++) {
+        IDArray.push(data.items[i].id.videoId)
+        console.log(IDArray);
+       }
+       for (i=0; i<IDArray.length; i++) {
+        linkArray.push('youtube.com/watch?v=' + IDArray[i]);
+        console.log(linkArray);
+      
+// these loops need to be fixed so that it's adding all of the links to the linkarray. Also, need to add line breaks between results. finally,
+// need to make them links
+
+        for (i=0; i<linkArray.length; i++) {
+            resultsDiv = document.getElementById('results');
+            linksDiv = document.createElement('a');
+            linkText = linkArray[i];
+            linkTextNode = document.createTextNode(linkText);
+            linksDiv.appendChild(linkTextNode);
+            resultsDiv.appendChild(linksDiv);
+    
+           }
+
+       }
+    })
+      // resultsDiv = document.getElementById('results');
+      // resultsDiv.innerHTML = linkArray[];
+
+     // Create a box to display the links
+     // drop the links into the box
+     //Clicking the link activates the player function...
+
 
 
    
+   .catch(error => console.error(error));
+  
+
+
+
 })
 
 
